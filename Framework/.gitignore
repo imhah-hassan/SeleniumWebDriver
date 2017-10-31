@@ -1,0 +1,5 @@
+/target/
+/.project
+/test-output/
+/bin/
+/.settings/
