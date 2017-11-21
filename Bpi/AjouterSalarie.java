@@ -11,7 +11,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 
 import org.junit.runners.MethodSorters;
-
 import org.junit.FixMethodOrder;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -54,10 +53,54 @@ public class AjouterSalarie {
 
   @Test
   public void a_AjouterSalarie() throws Exception {
+	  driver.findElement(By.cssSelector("#menu_pim_viewPimModule > b")).click();
+	  for (int second = 0;; second++) {
+	  	if (second >= 60) fail("timeout");
+	  	try { if (isElementPresent(By.cssSelector("#menu_pim_viewPimModule > b"))) break; } catch (Exception e) {}
+	  	Thread.sleep(1000);
+	  }
+
+	  driver.findElement(By.id("menu_pim_addEmployee")).click();
+	  for (int second = 0;; second++) {
+	  	if (second >= 60) fail("timeout");
+	  	try { if (isElementPresent(By.id("firstName"))) break; } catch (Exception e) {}
+	  	Thread.sleep(1000);
+	  }
+
+	  driver.findElement(By.id("firstName")).clear();
+	  driver.findElement(By.id("firstName")).sendKeys("IMHAH");
+	  driver.findElement(By.id("lastName")).clear();
+	  driver.findElement(By.id("lastName")).sendKeys("Hassan");
+	  driver.findElement(By.id("btnSave")).click();
+	  driver.findElement(By.id("btnSave")).click();
+	  driver.findElement(By.id("personal_optGender_1")).click();
+	  new Select(driver.findElement(By.id("personal_cmbNation"))).selectByVisibleText("French");
+	  new Select(driver.findElement(By.id("personal_cmbMarital"))).selectByVisibleText("Single");
+	  driver.findElement(By.id("personal_DOB")).click();
+	  driver.findElement(By.id("personal_DOB")).clear();
+	  driver.findElement(By.id("personal_DOB")).sendKeys("2000-10-15");
+	  driver.findElement(By.id("btnSave")).click();
+	  // ERROR: Caught exception [unknown command []]
+
   }
   
   @Test
   public void b_SupprimerSalarie() throws Exception {
+	  for (int second = 0;; second++) {
+			if (second >= 60) fail("timeout");
+			try { if (isElementPresent(By.cssSelector("#menu_pim_viewPimModule > b"))) break; } catch (Exception e) {}
+			Thread.sleep(1000);
+		}
+
+		driver.findElement(By.cssSelector("#menu_pim_viewPimModule > b")).click();
+		driver.findElement(By.id("menu_pim_viewEmployeeList")).click();
+		driver.findElement(By.id("empsearch_employee_name_empName")).clear();
+		driver.findElement(By.id("empsearch_employee_name_empName")).sendKeys("IMHAH");
+		driver.findElement(By.id("searchBtn")).click();
+		driver.findElement(By.id("ohrmList_chkSelectAll")).click();
+		driver.findElement(By.id("btnDelete")).click();
+		driver.findElement(By.id("dialogDeleteBtn")).click();
+
   }
   
   @Test
@@ -84,6 +127,8 @@ public class AjouterSalarie {
 	    driver.findElement(By.xpath("//a[contains(@href, 'auth/logout')]")).click();
 
 	    driver.quit();
+	    
+	    
     String verificationErrorString = verificationErrors.toString();
     if (!"".equals(verificationErrorString)) {
       fail(verificationErrorString);
