@@ -1,6 +1,8 @@
 package formation.selenium.bpi2017;
 
 import java.util.regex.Pattern;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -10,16 +12,29 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+
 import org.junit.runners.MethodSorters;
 import org.junit.FixMethodOrder;
+import org.junit.runner.RunWith;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@RunWith(JUnitParamsRunner.class)
 public class AjouterSalarie {
   private static WebDriver driver;
   private static String baseUrl;
   private boolean acceptNextAlert = true;
   private static StringBuffer verificationErrors = new StringBuffer();
 
+  
+  private Object[] salaries() {
+	    return new Object[]{
+	                 new Object[]{"IMHAH", "Hassa"},
+	                 new Object[]{"Toto", "Titi"}
+	            };
+	}  
+  
   @BeforeClass
   public static void setUp() throws Exception {
     // Pour supprimer le message : "Chrome est contrôlé par un logiciel de test automatisé"
@@ -52,7 +67,8 @@ public class AjouterSalarie {
   }
 
   @Test
-  public void a_AjouterSalarie() throws Exception {
+  @Parameters(method = "salaries")
+  public void a_AjouterSalarie(String nom, String prenom) throws Exception {
 	  driver.findElement(By.cssSelector("#menu_pim_viewPimModule > b")).click();
 	  for (int second = 0;; second++) {
 	  	if (second >= 60) fail("timeout");
@@ -68,13 +84,14 @@ public class AjouterSalarie {
 	  }
 
 	  driver.findElement(By.id("firstName")).clear();
-	  driver.findElement(By.id("firstName")).sendKeys("IMHAH");
+	  driver.findElement(By.id("firstName")).sendKeys(nom);
 	  driver.findElement(By.id("lastName")).clear();
-	  driver.findElement(By.id("lastName")).sendKeys("Hassan");
+	  driver.findElement(By.id("lastName")).sendKeys(prenom);
 	  driver.findElement(By.id("btnSave")).click();
 	  driver.findElement(By.id("btnSave")).click();
 	  driver.findElement(By.id("personal_optGender_1")).click();
-	  new Select(driver.findElement(By.id("personal_cmbNation"))).selectByVisibleText("French");
+	  new Select(driver.findElement(By.id("personal_cmbNation"))).selectByValue("64");
+
 	  new Select(driver.findElement(By.id("personal_cmbMarital"))).selectByVisibleText("Single");
 	  driver.findElement(By.id("personal_DOB")).click();
 	  driver.findElement(By.id("personal_DOB")).clear();
