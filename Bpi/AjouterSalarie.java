@@ -10,14 +10,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 
-public class AjouterSalarie {
-  private WebDriver driver;
-  private String baseUrl;
-  private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
+import org.junit.runners.MethodSorters;
 
-  @Before
-  public void setUp() throws Exception {
+import org.junit.FixMethodOrder;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class AjouterSalarie {
+  private static WebDriver driver;
+  private static String baseUrl;
+  private boolean acceptNextAlert = true;
+  private static StringBuffer verificationErrors = new StringBuffer();
+
+  @BeforeClass
+  public static void setUp() throws Exception {
     // Pour supprimer le message : "Chrome est contrôlé par un logiciel de test automatisé"
 	ChromeOptions options = new ChromeOptions();
 	options.addArguments("disable-infobars");
@@ -48,7 +53,15 @@ public class AjouterSalarie {
   }
 
   @Test
-  public void Navigation() throws Exception {
+  public void a_AjouterSalarie() throws Exception {
+  }
+  
+  @Test
+  public void b_SupprimerSalarie() throws Exception {
+  }
+  
+  @Test
+  public void c_Navigation() throws Exception {
     
     driver.findElement(By.xpath("//a[@id='menu_admin_viewAdminModule']/b")).click();
     driver.findElement(By.cssSelector("#menu_pim_viewPimModule > b")).click();
@@ -58,17 +71,17 @@ public class AjouterSalarie {
     
   }
 
-  @After
-  public void tearDown() throws Exception {
+  @AfterClass
+  public static void tearDown() throws Exception {
 
 	    driver.findElement(By.id("welcome")).click();
 	    for (int second = 0;; second++) {
 	    	if (second >= 60) fail("timeout");
-	    	try { if (isElementPresent(By.xpath("//a[contains(@href, '/index.php/auth/logout')]"))) break; } catch (Exception e) {}
+	    	try { if (isElementPresent(By.xpath("//a[contains(@href, 'auth/logout')]"))) break; } catch (Exception e) {}
 	    	Thread.sleep(1000);
 	    }
 
-	    driver.findElement(By.xpath("//a[contains(@href, '/index.php/auth/logout')]")).click();
+	    driver.findElement(By.xpath("//a[contains(@href, 'auth/logout')]")).click();
 
 	    driver.quit();
     String verificationErrorString = verificationErrors.toString();
@@ -77,7 +90,7 @@ public class AjouterSalarie {
     }
   }
 
-  private boolean isElementPresent(By by) {
+  private static boolean isElementPresent(By by) {
     try {
       driver.findElement(by);
       return true;
