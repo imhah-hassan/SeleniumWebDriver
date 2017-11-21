@@ -10,7 +10,9 @@ import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -23,6 +25,8 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)
 public class AjouterSalarie {
   private static WebDriver driver;
+  private static WebDriverWait wait;
+
   private static String baseUrl;
   private boolean acceptNextAlert = true;
   private static StringBuffer verificationErrors = new StringBuffer();
@@ -30,7 +34,7 @@ public class AjouterSalarie {
   
   private Object[] salaries() {
 	    return new Object[]{
-	                 new Object[]{"IMHAH", "Hassa"},
+	                 new Object[]{"IMHAH", "Hassan"},
 	                 new Object[]{"Toto", "Titi"}
 	            };
 	}  
@@ -42,6 +46,7 @@ public class AjouterSalarie {
 	options.addArguments("disable-infobars");
 	options.addArguments("--start-minimized");
     driver = new ChromeDriver(options);
+    wait  = new WebDriverWait(driver, 30);
 	
 	
     baseUrl = "http://opensource.demo.orangehrmlive.com/";
@@ -134,14 +139,11 @@ public class AjouterSalarie {
   @AfterClass
   public static void tearDown() throws Exception {
 
-	    driver.findElement(By.id("welcome")).click();
-	    for (int second = 0;; second++) {
-	    	if (second >= 60) fail("timeout");
-	    	try { if (isElementPresent(By.xpath("//a[contains(@href, 'auth/logout')]"))) break; } catch (Exception e) {}
-	    	Thread.sleep(1000);
-	    }
+	    WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("welcome")));
+	    element.click();
 
-	    driver.findElement(By.xpath("//a[contains(@href, 'auth/logout')]")).click();
+	    element = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//a[contains(@href, 'auth/logout')]"))));
+	    element.click();
 
 	    driver.quit();
 	    
