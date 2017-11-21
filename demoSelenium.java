@@ -1,4 +1,4 @@
-package com.example.tests;
+package formation.selenium.bpi2017;
 
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
@@ -6,10 +6,11 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 
-public class DemoSelenium {
+public class LoginLogout {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -17,7 +18,13 @@ public class DemoSelenium {
 
   @Before
   public void setUp() throws Exception {
-    driver = new FirefoxDriver();
+    // Pour supprimer le message : "Chrome est contrôlé par un logiciel de test automatisé"
+	ChromeOptions options = new ChromeOptions();
+	options.addArguments("disable-infobars");
+	options.addArguments("--start-minimized");
+    driver = new ChromeDriver(options);
+	
+	
     baseUrl = "http://opensource.demo.orangehrmlive.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
