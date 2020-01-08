@@ -1,5 +1,7 @@
 package fr.acial.exercices;
 
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
 import static org.testng.Assert.*;
@@ -9,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class exercice3{
   private WebDriver driver;
-  private String baseUrl = "https://www.universitedutest.com/OrangeHRM";
+  private String baseUrl = "";
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
@@ -24,7 +26,13 @@ public class exercice3{
   @BeforeClass(alwaysRun = true)
   public void setUp() throws Exception {
 	  
-  	System.setProperty("webdriver.chrome.driver", "D:\\Formation\\drivers\\chromedriver.exe");
+	InputStream input = exercice2.class.getClassLoader().getResourceAsStream("config.properties");
+	Properties prop = new Properties();
+	prop.load(input);
+	
+	baseUrl = prop.getProperty("Url");
+	System.setProperty("webdriver.chrome.driver", prop.getProperty("ChromeDriver"));
+	  	
   	driver = new ChromeDriver();
 
   	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);

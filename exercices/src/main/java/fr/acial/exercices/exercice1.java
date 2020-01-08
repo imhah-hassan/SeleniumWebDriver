@@ -6,16 +6,16 @@ import static org.testng.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class exercice1{
+public class exercice1	{
   private WebDriver driver;
-  private String baseUrl = "https://www.universitedutest.com/OrangeHRM";
+  private String baseUrl = "https://opensource-demo.orangehrmlive.com/";
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
   @BeforeClass(alwaysRun = true)
   public void setUp() throws Exception {
 	  
-  	System.setProperty("webdriver.chrome.driver", "D:\\Formation\\drivers\\chromedriver.exe");
+  	System.setProperty("webdriver.chrome.driver", "C:\\Apps\\ChromeDrivers\\chromedriver.exe");
   	driver = new ChromeDriver();
 
   	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -33,7 +33,7 @@ public class exercice1{
     driver.findElement(By.id("txtUsername")).clear();
     driver.findElement(By.id("txtUsername")).sendKeys("admin");
     driver.findElement(By.id("txtPassword")).clear();
-    driver.findElement(By.id("txtPassword")).sendKeys("Paris$2018");
+    driver.findElement(By.id("txtPassword")).sendKeys("admin123");
     driver.findElement(By.id("btnLogin")).click();
     for (int second = 0;; second++) {
     	if (second >= 60) fail("timeout");
@@ -44,7 +44,7 @@ public class exercice1{
     assertEquals(driver.findElement(By.id("welcome")).getText(), "Welcome Admin");
     assertTrue(isElementPresent(By.id("menu_admin_viewAdminModule")));
     driver.findElement(By.id("welcome")).click();
-    driver.findElement(By.linkText("Déconnexion")).click();
+    driver.findElement(By.linkText("Logout")).click();
     assertTrue(isElementPresent(By.id("txtUsername")));
   }
 
@@ -66,27 +66,5 @@ public class exercice1{
     }
   }
 
-  private boolean isAlertPresent() {
-    try {
-      driver.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
 
-  private String closeAlertAndGetItsText() {
-    try {
-      Alert alert = driver.switchTo().alert();
-      String alertText = alert.getText();
-      if (acceptNextAlert) {
-        alert.accept();
-      } else {
-        alert.dismiss();
-      }
-      return alertText;
-    } finally {
-      acceptNextAlert = true;
-    }
-  }
 }

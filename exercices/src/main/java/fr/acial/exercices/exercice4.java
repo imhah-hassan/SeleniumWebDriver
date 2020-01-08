@@ -1,6 +1,8 @@
 package fr.acial.exercices;
 
+import java.io.InputStream;
 import java.net.URL;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
 import static org.testng.Assert.*;
@@ -16,6 +18,7 @@ public class exercice4{
   private String baseUrl = "https://www.universitedutest.com/OrangeHRM";
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
+  private Properties prop;
   public void loginLogout() throws InterruptedException  {
 
 	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -55,15 +58,21 @@ public class exercice4{
 	      fail(verificationErrorString);
 	    }
   }
+  
   @BeforeClass(alwaysRun = true)
   public void setUp() throws Exception {
-	  
+		InputStream input = exercice2.class.getClassLoader().getResourceAsStream("config.properties");
+		prop = new Properties();
+		prop.load(input);
+		
+		baseUrl = prop.getProperty("Url");
+
   }
 
   // @Test
   public void chromeTest() throws Exception {
 	  // http://chromedriver.chromium.org/downloads
-	  	System.setProperty("webdriver.chrome.driver", "D:\\Formation\\drivers\\chromedriver.exe");
+	  	System.setProperty("webdriver.chrome.driver", prop.getProperty("ChromeDriver"));
 	  	driver = new ChromeDriver();
 
 	  	loginLogout();
