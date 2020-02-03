@@ -1,4 +1,4 @@
-package fr.acial.exercices;
+package org.exercices;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.Select;
 public class exercice3{
   private WebDriver driver;
   private String baseUrl = "";
+  private String pwdAdmin= "";
+  private String welcomeMessage="";
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
@@ -26,11 +28,14 @@ public class exercice3{
   @BeforeClass(alwaysRun = true)
   public void setUp() throws Exception {
 	  
-	InputStream input = exercice2.class.getClassLoader().getResourceAsStream("config.properties");
+	InputStream input = exercice3.class.getClassLoader().getResourceAsStream("config.properties");
 	Properties prop = new Properties();
 	prop.load(input);
 	
 	baseUrl = prop.getProperty("Url");
+	pwdAdmin = prop.getProperty("Pwd");
+	welcomeMessage = prop.getProperty("WelcomeMessage");
+	
 	System.setProperty("webdriver.chrome.driver", prop.getProperty("ChromeDriver"));
 	  	
   	driver = new ChromeDriver();
@@ -46,7 +51,7 @@ public class exercice3{
     driver.findElement(By.id("txtUsername")).clear();
     driver.findElement(By.id("txtUsername")).sendKeys("admin");
     driver.findElement(By.id("txtPassword")).clear();
-    driver.findElement(By.id("txtPassword")).sendKeys("Paris$2018");
+    driver.findElement(By.id("txtPassword")).sendKeys(pwdAdmin);
     driver.findElement(By.id("btnLogin")).click();
     for (int second = 0;; second++) {
     	if (second >= 60) fail("timeout");
@@ -54,7 +59,7 @@ public class exercice3{
     	Thread.sleep(1000);
     }
 
-    assertEquals(driver.findElement(By.id("welcome")).getText(), "Welcome Admin");
+    assertEquals(driver.findElement(By.id("welcome")).getText(), welcomeMessage);
     assertTrue(isElementPresent(By.id("menu_admin_viewAdminModule")));
   }
 
@@ -66,8 +71,9 @@ public class exercice3{
 	    	try { if (isElementPresent(By.id("menu_pim_viewPimModule"))) break; } catch (Exception e) {}
 	    	Thread.sleep(1000);
 	    }
-
+	    Thread.sleep(1000);
 	    driver.findElement(By.id("menu_pim_viewPimModule")).click();
+	    Thread.sleep(1000);
 	    driver.findElement(By.id("menu_pim_addEmployee")).click();
 	    for (int second = 0;; second++) {
 	    	if (second >= 60) fail("timeout");
@@ -83,7 +89,7 @@ public class exercice3{
 	    driver.findElement(By.id("employeeId")).sendKeys(id);
 	    driver.findElement(By.id("btnSave")).click();
 	    try {
-	      assertEquals(driver.findElement(By.xpath("//div[@id='pdMainContainer']/div/h1")).getText(), "Détails personnels");
+	      assertEquals(driver.findElement(By.xpath("//div[@id='pdMainContainer']/div/h1")).getText(), "Informations personnelles");
 	    } catch (Error e) {
 	      verificationErrors.append(e.toString());
 	    }
@@ -102,7 +108,9 @@ public class exercice3{
 	    	try { if (isElementPresent(By.id("menu_pim_viewPimModule"))) break; } catch (Exception e) {}
 	    	Thread.sleep(1000);
 	    }
+	    Thread.sleep(1000);
 	    driver.findElement(By.id("menu_pim_viewPimModule")).click();
+	    Thread.sleep(1000);
 	    driver.findElement(By.id("menu_pim_viewEmployeeList")).click();
 
 	    for (int second = 0;; second++) {
@@ -126,11 +134,11 @@ public class exercice3{
 	    
 	    for (int second = 0;; second++) {
 	    	if (second >= 60) fail("timeout");
-	    	try { if (isElementPresent(By.linkText("Détails personnels"))) break; } catch (Exception e) {}
+	    	try { if (isElementPresent(By.linkText("Informations personnelles"))) break; } catch (Exception e) {}
 	    	Thread.sleep(1000);
 	    }
 
-	    driver.findElement(By.linkText("Détails personnels")).click();
+	    driver.findElement(By.linkText("Informations personnelles")).click();
 	    driver.findElement(By.id("btnSave")).click();
 
 	    driver.findElement(By.id("personal_optGender_1")).click();
@@ -153,7 +161,9 @@ public class exercice3{
 	    	try { if (isElementPresent(By.id("menu_pim_viewPimModule"))) break; } catch (Exception e) {}
 	    	Thread.sleep(1000);
 	    }
+	    Thread.sleep(1000);
 	    driver.findElement(By.id("menu_pim_viewPimModule")).click();
+	    Thread.sleep(1000);
 	    driver.findElement(By.id("menu_pim_viewEmployeeList")).click();
 
 	    for (int second = 0;; second++) {
@@ -216,7 +226,9 @@ public class exercice3{
 	    	try { if (isElementPresent(By.id("menu_pim_viewPimModule"))) break; } catch (Exception e) {}
 	    	Thread.sleep(1000);
 	    }
+	    Thread.sleep(1000);
 	    driver.findElement(By.id("menu_pim_viewPimModule")).click();
+	    Thread.sleep(1000);
 	    driver.findElement(By.id("menu_pim_viewEmployeeList")).click();
 
 	    for (int second = 0;; second++) {
@@ -264,7 +276,9 @@ public class exercice3{
 	    	try { if (isElementPresent(By.id("menu_pim_viewPimModule"))) break; } catch (Exception e) {}
 	    	Thread.sleep(1000);
 	    }
+	  	Thread.sleep(1000);
 	    driver.findElement(By.id("menu_pim_viewPimModule")).click();
+	    Thread.sleep(1000);
 	    driver.findElement(By.id("menu_pim_viewEmployeeList")).click();
 	    
 	    driver.findElement(By.id("ohrmList_chkSelectAll")).click();

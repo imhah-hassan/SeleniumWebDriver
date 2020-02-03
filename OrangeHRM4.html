@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>OrangeHRM4</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Login</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost/orangehrm<datalist><option>http://localhost/orangehrm</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=txtUsername<datalist><option>id=txtUsername</option><option>name=txtUsername</option><option>//input[@id='txtUsername']</option><option>//div[@id='divUsername']/input</option><option>//div[2]/input</option><option>css=#txtUsername</option></datalist></td><td>Admin</td>
+</tr>
+<tr><td>type</td><td>id=txtPassword<datalist><option>id=txtPassword</option><option>name=txtPassword</option><option>//input[@id='txtPassword']</option><option>//div[@id='divPassword']/input</option><option>//div[3]/input</option><option>css=#txtPassword</option></datalist></td><td>T€st$2020</td>
+</tr>
+<tr><td>click</td><td>id=btnLogin<datalist><option>id=btnLogin</option><option>name=Submit</option><option>//input[@id='btnLogin']</option><option>//div[@id='divLoginButton']/input</option><option>//div[5]/input</option><option>css=#btnLogin</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>id=welcome<datalist><option>id=welcome</option><option>link=Bienvenue Hassan</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='×'])[1]/preceding::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='À propose de'])[2]/preceding::a[3]</option><option>xpath=//*/text()[normalize-space(.)='Bienvenue Hassan']/parent::*</option><option>//a[contains(text(),'Bienvenue Hassan')]</option><option>//a[@id='welcome']</option><option>//div[@id='branding']/a[2]</option><option>//a[contains(@href, '#')]</option><option>//a[2]</option><option>css=#welcome</option></datalist></td><td>Bienvenue Hassan</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">AddEmployee</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>id=menu_pim_viewPimModule<datalist><option>id=menu_pim_viewPimModule</option><option>link=GIP</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Register OAuth Client'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Social Media Authentication'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Inclure uniquement les feuilles de temps approuvées'])[1]/preceding::a[2]</option><option>//a[@id='menu_pim_viewPimModule']</option><option>//div[@id='wrapper']/div[2]/ul/li[2]/a</option><option>//a[contains(@href, '/orangehrm/symfony/web/index.php/pim/viewPimModule')]</option><option>//div[2]/ul/li[2]/a</option><option>css=#menu_pim_viewPimModule</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=menu_pim_addEmployee<datalist><option>id=menu_pim_addEmployee</option><option>link=Ajouter un employé</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Liste des employés'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Raisons pour Fin de Contrat'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Rapports'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Congé'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='Ajouter un employé']/parent::*</option><option>//a[contains(text(),'Ajouter un employé')]</option><option>//a[@id='menu_pim_addEmployee']</option><option>//div[@id='wrapper']/div[2]/ul/li[2]/ul/li[3]/a</option><option>//a[contains(@href, '/orangehrm/symfony/web/index.php/pim/addEmployee')]</option><option>//li[2]/ul/li[3]/a</option><option>css=#menu_pim_addEmployee</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=firstName<datalist><option>id=firstName</option><option>name=firstName</option><option>//input[@id='firstName']</option><option>//form[@id='frmAddEmp']/fieldset/ol/li/ol/li/input</option><option>//li/input</option><option>css=#firstName</option></datalist></td><td>Nom</td>
+</tr>
+<tr><td>type</td><td>id=lastName<datalist><option>id=lastName</option><option>name=lastName</option><option>//input[@id='lastName']</option><option>//form[@id='frmAddEmp']/fieldset/ol/li/ol/li[3]/input</option><option>//li/ol/li[3]/input</option><option>css=#lastName</option></datalist></td><td>Prenom</td>
+</tr>
+<tr><td>type</td><td>id=employeeId<datalist><option>id=employeeId</option><option>name=employeeId</option><option>//input[@id='employeeId']</option><option>//form[@id='frmAddEmp']/fieldset/ol/li[2]/input</option><option>//li[2]/input</option><option>css=#employeeId</option></datalist></td><td>1000</td>
+</tr>
+<tr><td>click</td><td>id=btnSave<datalist><option>id=btnSave</option><option>//input[@id='btnSave']</option><option>//form[@id='frmAddEmp']/fieldset/p/input</option><option>//p/input</option><option>css=#btnSave</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=btnSave<datalist><option>id=btnSave</option><option>//input[@id='btnSave']</option><option>//form[@id='frmEmpPersonalDetails']/fieldset/p/input</option><option>//p/input</option><option>css=#btnSave</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Sexe'])[1]/following::label[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Sexe'])[1]/following::label[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)=concat('Date d', "'", 'expiration permis')])[1]/following::label[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Féminin'])[1]/preceding::label[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='État civil'])[1]/preceding::label[2]</option><option>xpath=//*/text()[normalize-space(.)='Masculin']/parent::*</option><option>//form[@id='frmEmpPersonalDetails']/fieldset/ol[3]/li/ul/li/label</option><option>//ul/li/label</option><option>css=ul.radio_list &gt; li &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>select</td><td>id=personal_cmbNation<datalist><option>id=personal_cmbNation</option><option>name=personal[cmbNation]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Nationalité'])[1]/following::select[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='État civil'])[1]/following::select[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Date de naissance'])[1]/preceding::select[1]</option><option>//select[@id='personal_cmbNation']</option><option>//form[@id='frmEmpPersonalDetails']/fieldset/ol[3]/li[3]/select</option><option>//li[3]/select</option><option>css=#personal_cmbNation</option></datalist></td><td>label=Français</td>
+</tr>
+<tr><td>select</td><td>id=personal_cmbMarital<datalist><option>id=personal_cmbMarital</option><option>name=personal[cmbMarital]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='État civil'])[1]/following::select[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Féminin'])[1]/following::select[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Nationalité'])[1]/preceding::select[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Date de naissance'])[1]/preceding::select[2]</option><option>//select[@id='personal_cmbMarital']</option><option>//form[@id='frmEmpPersonalDetails']/fieldset/ol[3]/li[2]/select</option><option>//select</option><option>css=#personal_cmbMarital</option></datalist></td><td>label=Marié</td>
+</tr>
+<tr><td>type</td><td>id=personal_DOB<datalist><option>id=personal_DOB</option><option>name=personal[DOB]</option><option>//input[@id='personal_DOB']</option><option>//form[@id='frmEmpPersonalDetails']/fieldset/ol[3]/li[4]/input</option><option>//ol[3]/li[4]/input</option><option>css=#personal_DOB</option></datalist></td><td>2000-01-21</td>
+</tr>
+<tr><td>click</td><td>id=btnSave<datalist><option>id=btnSave</option><option>//input[@id='btnSave']</option><option>//form[@id='frmEmpPersonalDetails']/fieldset/p/input</option><option>//p/input</option><option>css=#btnSave</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>//div[@id='profile-pic']/h1<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Access Records'])[1]/following::h1[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Candidate Records'])[1]/following::h1[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Informations personnelles'])[1]/preceding::h1[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Coordonnées'])[1]/preceding::h1[1]</option><option>xpath=//*/text()[normalize-space(.)='Nom Prenom']/parent::*</option><option>//div[@id='profile-pic']/h1</option><option>//h1</option><option>css=h1</option></datalist></td><td>Nom Prenom</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SearchEmployee</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>id=menu_pim_viewPimModule<datalist><option>id=menu_pim_viewPimModule</option><option>link=GIP</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Register OAuth Client'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Social Media Authentication'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Inclure uniquement les feuilles de temps approuvées'])[1]/preceding::a[2]</option><option>//a[@id='menu_pim_viewPimModule']</option><option>//div[@id='wrapper']/div[2]/ul/li[2]/a</option><option>//a[contains(@href, '/orangehrm/symfony/web/index.php/pim/viewPimModule')]</option><option>//div[2]/ul/li[2]/a</option><option>css=#menu_pim_viewPimModule</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=menu_pim_viewEmployeeList<datalist><option>id=menu_pim_viewEmployeeList</option><option>link=Liste des employés</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Raisons pour Fin de Contrat'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Méthodologies de Reporting'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Ajouter un employé'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Rapports'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='Liste des employés']/parent::*</option><option>//a[contains(text(),'Liste des employés')]</option><option>//a[@id='menu_pim_viewEmployeeList']</option><option>//div[@id='wrapper']/div[2]/ul/li[2]/ul/li[2]/a</option><option>//a[contains(@href, '/orangehrm/symfony/web/index.php/pim/viewEmployeeList/reset/1')]</option><option>//li[2]/ul/li[2]/a</option><option>css=#menu_pim_viewEmployeeList</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=empsearch_employee_name_empName<datalist><option>id=empsearch_employee_name_empName</option><option>name=empsearch[employee_name][empName]</option><option>//input[@id='empsearch_employee_name_empName']</option><option>//form[@id='search_form']/fieldset/ol/li/input</option><option>//li/input</option><option>css=#empsearch_employee_name_empName</option></datalist></td><td>Nom</td>
+</tr>
+<tr><td>click</td><td>id=searchBtn<datalist><option>id=searchBtn</option><option>name=_search</option><option>//input[@id='searchBtn']</option><option>//form[@id='search_form']/fieldset/p/input</option><option>//p/input</option><option>css=#searchBtn</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=1000<datalist><option>link=1000</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Responsable'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Sous unité'])[2]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Nom'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Prenom'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='1000']/parent::*</option><option>//a[contains(text(),'1000')]</option><option>//table[@id='resultTable']/tbody/tr/td[2]/a</option><option>//a[contains(@href, '/orangehrm/symfony/web/index.php/pim/viewEmployee/empNumber/7')]</option><option>//td[2]/a</option><option>css=td.left &gt; a</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">DeleteEmployee</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>id=menu_pim_viewPimModule<datalist><option>id=menu_pim_viewPimModule</option><option>link=GIP</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Register OAuth Client'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Social Media Authentication'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Inclure uniquement les feuilles de temps approuvées'])[1]/preceding::a[2]</option><option>//a[@id='menu_pim_viewPimModule']</option><option>//div[@id='wrapper']/div[2]/ul/li[2]/a</option><option>//a[contains(@href, '/orangehrm/symfony/web/index.php/pim/viewPimModule')]</option><option>//div[2]/ul/li[2]/a</option><option>css=#menu_pim_viewPimModule</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=menu_pim_viewEmployeeList<datalist><option>id=menu_pim_viewEmployeeList</option><option>link=Liste des employés</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Raisons pour Fin de Contrat'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Méthodologies de Reporting'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Ajouter un employé'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Rapports'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='Liste des employés']/parent::*</option><option>//a[contains(text(),'Liste des employés')]</option><option>//a[@id='menu_pim_viewEmployeeList']</option><option>//div[@id='wrapper']/div[2]/ul/li[2]/ul/li[2]/a</option><option>//a[contains(@href, '/orangehrm/symfony/web/index.php/pim/viewEmployeeList/reset/1')]</option><option>//li[2]/ul/li[2]/a</option><option>css=#menu_pim_viewEmployeeList</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=empsearch_id<datalist><option>id=empsearch_id</option><option>name=empsearch[id]</option><option>//input[@id='empsearch_id']</option><option>//form[@id='search_form']/fieldset/ol/li[2]/input</option><option>//li[2]/input</option><option>css=#empsearch_id</option></datalist></td><td>1000</td>
+</tr>
+<tr><td>click</td><td>id=searchBtn<datalist><option>id=searchBtn</option><option>name=_search</option><option>//input[@id='searchBtn']</option><option>//form[@id='search_form']/fieldset/p/input</option><option>//p/input</option><option>css=#searchBtn</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//table[@id='resultTable']/tbody/tr/td/input<datalist><option>id=ohrmList_chkSelectRecord_7</option><option>name=chkSelectRow[]</option><option>//input[@id='ohrmList_chkSelectRecord_7']</option><option>//table[@id='resultTable']/tbody/tr/td/input</option><option>//td/input</option><option>css=#ohrmList_chkSelectRecord_7</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>link=1000<datalist><option>link=1000</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Responsable'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Sous unité'])[2]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Nom'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Prenom'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='1000']/parent::*</option><option>//a[contains(text(),'1000')]</option><option>//table[@id='resultTable']/tbody/tr/td[2]/a</option><option>//a[contains(@href, '/orangehrm/symfony/web/index.php/pim/viewEmployee/empNumber/7')]</option><option>//td[2]/a</option><option>css=td.left &gt; a</option></datalist></td><td>1000</td>
+</tr>
+<tr><td>click</td><td>id=btnDelete<datalist><option>id=btnDelete</option><option>name=btnDelete</option><option>//input[@id='btnDelete']</option><option>//form[@id='frmList_ohrmListComponent']/div/input[2]</option><option>//form/div/input[2]</option><option>css=#btnDelete</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=dialogDeleteBtn<datalist><option>id=dialogDeleteBtn</option><option>//input[@id='dialogDeleteBtn']</option><option>//div[@id='deleteConfModal']/div[3]/input</option><option>//div[3]/div[3]/input</option><option>css=#dialogDeleteBtn</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Logout</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>id=welcome<datalist><option>id=welcome</option><option>link=Bienvenue Hassan</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='×'])[1]/preceding::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='À propose de'])[2]/preceding::a[3]</option><option>xpath=//*/text()[normalize-space(.)='Bienvenue Hassan']/parent::*</option><option>//a[contains(text(),'Bienvenue Hassan')]</option><option>//a[@id='welcome']</option><option>//div[@id='branding']/a[2]</option><option>//a[contains(@href, '#')]</option><option>//a[2]</option><option>css=#welcome</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Déconnexion<datalist><option>link=Déconnexion</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Changer de mot de passe'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='À propose de'])[2]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='×'])[2]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Confirm Toggl Sync'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='Déconnexion']/parent::*</option><option>//a[contains(text(),'Déconnexion')]</option><option>//div[@id='welcome-menu']/ul/li[3]/a</option><option>//a[contains(@href, '/orangehrm/symfony/web/index.php/auth/logout')]</option><option>//li[3]/a</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

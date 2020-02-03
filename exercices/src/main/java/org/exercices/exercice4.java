@@ -1,4 +1,4 @@
-package fr.acial.exercices;
+package org.exercices;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -10,12 +10,15 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class exercice4{
   private WebDriver driver;
-  private String baseUrl = "https://www.universitedutest.com/OrangeHRM";
+  private String baseUrl = "";
+  private String pwdAdmin= "";
+  private String welcomeMessage="";
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
   private Properties prop;
@@ -32,16 +35,18 @@ public class exercice4{
 	    driver.findElement(By.id("txtUsername")).clear();
 	    driver.findElement(By.id("txtUsername")).sendKeys("admin");
 	    driver.findElement(By.id("txtPassword")).clear();
-	    driver.findElement(By.id("txtPassword")).sendKeys("Paris$2018");
+	    driver.findElement(By.id("txtPassword")).sendKeys(pwdAdmin);
 	    driver.findElement(By.id("btnLogin")).click();
+	    Thread.sleep(1000);
 	    for (int second = 0;; second++) {
 	    	if (second >= 60) fail("timeout");
 	    	try { if (isElementPresent(By.id("welcome"))) break; } catch (Exception e) {}
 	    	Thread.sleep(1000);
 	    }
 
-	    assertEquals(driver.findElement(By.id("welcome")).getText(), "Welcome Admin");
+	    assertEquals(driver.findElement(By.id("welcome")).getText(), welcomeMessage);
 	    assertTrue(isElementPresent(By.id("menu_admin_viewAdminModule")));
+	    Thread.sleep(1000);
 	    driver.findElement(By.id("welcome")).click();
 	    
 
@@ -50,6 +55,7 @@ public class exercice4{
 	    	try { if (isElementPresent(By.xpath("//div[@id='welcome-menu']/ul/li[3]/a"))) break; } catch (Exception e) {}
 	    	Thread.sleep(1000);
 	    }
+	    Thread.sleep(1000);
 	    driver.findElement(By.xpath("//div[@id='welcome-menu']/ul/li[3]/a")).click();
 	    assertTrue(isElementPresent(By.id("txtUsername")));
 	  	driver.quit();
@@ -61,72 +67,72 @@ public class exercice4{
   
   @BeforeClass(alwaysRun = true)
   public void setUp() throws Exception {
-		InputStream input = exercice2.class.getClassLoader().getResourceAsStream("config.properties");
+		InputStream input = exercice4.class.getClassLoader().getResourceAsStream("config.properties");
 		prop = new Properties();
 		prop.load(input);
 		
 		baseUrl = prop.getProperty("Url");
+		pwdAdmin = prop.getProperty("Pwd");
+		welcomeMessage = prop.getProperty("WelcomeMessage");
 
   }
 
-  // @Test
+  // @Test (priority=1)
   public void chromeTest() throws Exception {
 	  // http://chromedriver.chromium.org/downloads
 	  	System.setProperty("webdriver.chrome.driver", prop.getProperty("ChromeDriver"));
 	  	driver = new ChromeDriver();
 
 	  	loginLogout();
-
+	  	
   }
 
-  // @Test
+  // @Test (priority=2)
   public void firefoxTest() throws Exception {
 	  	//	https://github.com/mozilla/geckodriver/releases
 	  
-	  	System.setProperty("webdriver.gecko.driver", "D:\\Formation\\drivers\\geckodriver.exe");
+	  	System.setProperty("webdriver.gecko.driver", prop.getProperty("GeckoDriver"));
 	  	driver = new FirefoxDriver();
 
 	  	loginLogout();
 
   }
 
-  // @Test
+  // @Test (priority=3)
   public void ieTest() throws Exception {
 	  	//	https://www.seleniumhq.org/download/
 	  
-	  	System.setProperty("webdriver.ie.driver", "D:\\Formation\\drivers\\IEDriverServer.exe");
+	  	System.setProperty("webdriver.ie.driver", prop.getProperty("ieDriver"));
 	  	// FAILED: ieTest
 	  	// org.openqa.selenium.SessionNotCreatedException: Unexpected error launching Internet Explorer. 
 	  	// Protected Mode settings are not the same for all zones. 
 	  	// Enable Protected Mode must be set to the same value (enabled or disabled) for all zones.
 	  	// driver = new InternetExplorerDriver();
-	  	
-	  	DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
-	  	caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
+	  	InternetExplorerOptions options = new InternetExplorerOptions();
+	  	options.setCapability("INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS", true);
+	  	options.requireWindowFocus();
+	  	driver = new InternetExplorerDriver(options);
 
-	  	// Initialize InternetExplorerDriver Instance using new capability.
-	  	driver = new InternetExplorerDriver(caps);
-	  	
 
 	  	loginLogout();
   }
-  // @Test
+  // @Test (priority=4)
   public void remoteTest() throws Exception {
 	  // https://www.seleniumhq.org/download/
 	  // run java -jar selenium-server-standalone-3.141.59.jar
-	  driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome());
+	  driver = new RemoteWebDriver(new URL("http://localhost:4545/wd/hub"), DesiredCapabilities.chrome());
 	  loginLogout();
 	  
   }
   
-  @Test
+  @Test (priority=5)
   public void gridTest() throws Exception {
 	  // https://www.seleniumhq.org/download/
-	  // run java -jar selenium-server-standalone-3.141.59.jar -role hub 
-	  // java  -jar selenium-server-standalone-3.141.59.jar -role webdriver -hub http://localhost:4444/grid/register -port 5566
-	  // http://localhost:4444/grid/console
+	  // run java -jar selenium-server-standalone-3.141.59.jar -role hub -port 4545
+	  // java  -jar selenium-server-standalone-3.141.59.jar -role webdriver -hub http://localhost:4545/grid/register -port 5566
+	  // http://localhost:4545/grid/console
 
-	  driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome());
+	  driver = new RemoteWebDriver(new URL("http://localhost:4545/wd/hub"), DesiredCapabilities.chrome());
 	  loginLogout();
 	  
   }
